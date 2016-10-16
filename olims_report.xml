@@ -109,7 +109,7 @@
         <report
             id="action_report_ws_manage_results"
             model="olims.worksheet"
-            string="Print WorkSheet"
+            string="WorkSheet"
             report_type="qweb-pdf"
             name="olims.report_ws_manage_results"
             file="olims.report_ws_manage_results"
@@ -129,6 +129,22 @@
             report_type="qweb-pdf"
             name="olims.analysis_request_labels"
             file="olims.analysis_request_labels"
+            />
+            <report
+            id="action_print_ar_labels_from_worksheet"
+            model="olims.worksheet"
+            string="Analysis Request Labels"
+            report_type="qweb-pdf"
+            name="olims.report_ws_ar_label_document"
+            file="olims.report_ws_ar_label_document"
+            />
+            <report
+            id="action_report_ws_manage_analysis"
+            model="olims.worksheet"
+            string="WorkSheet Analyses"
+            report_type="qweb-pdf"
+            name="olims.report_ws_manage_analysis"
+            file="olims.report_ws_manage_analysis"
             />
             
     </data>

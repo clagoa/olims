@@ -27,7 +27,7 @@ AR_STATES = (
     ('invalid','Invalid'),
     ('cancelled', 'Canceled')
     )
-COPY_OPTIONS=(
+SELECT_OPTIONS=(
     ('0','Select-to-copy'),
     ('1', '2'),
     ('2', '3'),
@@ -612,177 +612,125 @@ schema = (fields.Char(string='RequestID',
     fields.One2many(string="AddAnalysis",
         comodel_name="olims.add_analysis",
         inverse_name="add_analysis_id"),
-    fields.Selection(
+    fields.Boolean(
         string='CopyContact',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyCCContact',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyEmail',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copysample',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copybatch',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copysubgroup',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copytemplate',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copyprofile',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copysmaplingdate',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copysampler',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copysampletype',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copyspecification',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copysamplepoint',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='Copystorage',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyLotID',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyClientReference',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyClientSampleID',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopySamplingDeviation',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopySampleCondition',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyDefaultContainerType',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyAdHoc',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyComposite',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyReportDryMatter',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyInvoiceExclude',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyPriority',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyDiscount',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopySubtotal',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
     ),
-    fields.Selection(
+    fields.Boolean(
         string='CopyVAT',
-        selection=COPY_OPTIONS,
-        default='0',
-        select=True,
+        default=False,
+    ),
+    fields.Boolean(
+        string='CopyTotal',
+        default=False,
     ),
     fields.Selection(
-        string='CopyTotal',
-        selection=COPY_OPTIONS,
+        string='Copy',
+        selection=SELECT_OPTIONS,
         default='0',
         select=True,
     ),
@@ -868,6 +816,10 @@ class AnalysisRequest(models.Model, BaseOLiMSModel): #(BaseFolder):
     _name = 'olims.analysis_request'
     _rec_name = "RequestID"
     _inherit = ['mail.thread', 'ir.needaction_mixin']
+
+    @api.one
+    def button_clicked(self):
+        print "callded button click"
 
     def compute_analysisRequestId(self):
         for record in self:
@@ -1582,94 +1534,67 @@ class AnalysisRequest(models.Model, BaseOLiMSModel): #(BaseFolder):
                         if ws_manage_results_all_verified:
                             worksheet_obj.signal_workflow('verify')
 
-    # @api.onchange('CopyContact')
-    # def copy_to_other_fields(self):
-    #     self.copy_contact(self.CopyContact)
-        # self.copy_cccontact(self.CopytoOtherFields)
-        # self.copy_email(self.CopytoOtherFields)
-        # self.copy_sample(self.CopytoOtherFields)
-        # self.copy_batch(self.CopytoOtherFields)
-        # self.copy_subgroup(self.CopytoOtherFields)
-        # self.copy_template(self.CopytoOtherFields)
-        # self.copy_profile(self.CopytoOtherFields)
-        # self.copy_sampledate(self.CopytoOtherFields)
-        # self.copy_sampler(self.CopytoOtherFields)
-        # self.copy_sample_type(self.CopytoOtherFields)
-        # self.copy_specification(self.CopytoOtherFields)
-        # self.copy_sample_point(self.CopytoOtherFields)
-        # self.copy_storage_location(self.CopytoOtherFields)
-        # self.copy_client_order_num(self.CopytoOtherFields)
-        # self.copy_client_reference(self.CopytoOtherFields)
-        # self.copy_client_sample_id(self.CopytoOtherFields)
-        # self.copy_sampling_deviation(self.CopytoOtherFields)
-        # self.copy_sample_condition(self.CopytoOtherFields)
-        # self.copy_container_type(self.CopytoOtherFields)
-        # self.copy_adhoc(self.CopytoOtherFields)
-        # self.copy_composite(self.CopytoOtherFields)
-        # self.copy_report_dry_matter(self.CopytoOtherFields)
-        # self.copy_invoice_exclude(self.CopytoOtherFields)
-        # self.copy_priority(self.CopytoOtherFields)
     @api.onchange('CopyContact')
     def copy_contact(self):
-        if self.CopyContact == '1':
+        if self.Copy == '1':
             self.Contact1 = self.Contact
             self.Contact2 = self.Contact3 = None
-        elif self.CopyContact == '2':
+        elif self.Copy == '2':
             self.Contact1 = self.Contact2 = self.Contact
             self.Contact3 = None
-        elif self.CopyContact == '3':
+        elif self.Copy == '3':
             self.Contact1 = self.Contact2 = self.Contact3 = self.Contact
         else:
             pass
 
     @api.onchange('CopyCCContact')
     def copy_cccontact(self):
-        if self.CopyCCContact == '1':
+        if self.Copy == '1':
             self.CCContact1 = self.CCContact
             self.CCContact2 = self.CCContact3 = None
-        elif self.CopyCCContact == '2':
+        elif self.Copy == '2':
             self.CCContact1 = self.CCContact2 = self.CCContact
             self.CCContact3 = None
-        elif self.CopyCCContact == '3':
+        elif self.Copy == '3':
             self.CCContact1 = self.CCContact2 = self.CCContact3 = self.CCContact
         else:
             pass
 
     @api.onchange('CopyEmail')
     def copy_email(self):
-        if self.CopyEmail == '1':
+        if self.Copy == '1':
             self.CCEmails1 = self.CCEmails
             self.CCEmails2 = self.CCEmails3 = None
-        elif self.CopyEmail == '2':
+        elif self.Copy == '2':
             self.CCEmails1 = self.CCEmails2 = self.CCEmails
             self.CCEmails3 = None
-        elif self.CopyEmail == '3':
+        elif self.Copy == '3':
             self.CCEmails1 = self.CCEmails2 = self.CCEmails3 = self.CCEmails
         else:
             pass
 
     @api.onchange('Copysample')
     def copy_sample(self):
-        if self.Copysample == '1':
+        if self.Copy == '1':
             self.Sample_id1 = self.Sample_id
             self.Sample_id2 = self.Sample_id3 = None
-        elif self.Copysample == '2':
+        elif self.Copy == '2':
             self.Sample_id1 = self.Sample_id2 = self.Sample_id
             self.Sample_id3 = None
-        elif self.Copysample == '3':
+        elif self.Copy == '3':
             self.Sample_id1 = self.Sample_id2 = self.Sample_id3 = self.Sample_id
         else:
             pass
 
     @api.onchange('Copybatch')
     def copy_batch(self):
-        if self.Copybatch == '1':
+        if self.Copy == '1':
             self.Batch1 = self.Batch
             self.Batch2 = self.Batch3 = None
-        elif self.Copybatch == '2':
+        elif self.Copy == '2':
             self.Batch1 = self.Batch2 = self.Batch
             self.Batch3 = None
-        elif self.Copybatch == '3':
+        elif self.Copy == '3':
             self.Batch1 = self.Batch2 = self.Batch3 = self.Batch
         else:
             pass
@@ -1677,104 +1602,104 @@ class AnalysisRequest(models.Model, BaseOLiMSModel): #(BaseFolder):
 
     @api.onchange('Copysubgroup')
     def copy_subgroup(self):
-        if self.Copysubgroup == '1':
+        if self.Copy == '1':
             self.SubGroup1 = self.SubGroup
             self.SubGroup2 = self.SubGroup3 = None
-        elif self.Copysubgroup == '2':
+        elif self.Copy == '2':
             self.SubGroup1 = self.SubGroup2 = self.SubGroup
             self.SubGroup3 = None
-        elif self.Copysubgroup == '3':
+        elif self.Copy == '3':
             self.SubGroup1 = self.SubGroup2 = self.SubGroup3 = self.SubGroup
         else:
             pass
 
     @api.onchange('Copytemplate')
     def copy_template(self):
-        if self.Copytemplate == '1':
+        if self.Copy == '1':
             self.Template1 = self.Template
             self.Template2 = self.Template3 = None
-        elif self.Copytemplate == '2':
+        elif self.Copy == '2':
             self.Template1 = self.Template2 = self.Template
             self.Template3 = None
-        elif self.Copytemplate == '3':
+        elif self.Copy == '3':
             self.Template1 = self.Template2 = self.Template3 = self.Template
         else:
             pass
 
     @api.onchange('Copyprofile')
     def copy_profile(self):
-        if self.Copyprofile == '1':
+        if self.Copy == '1':
             self.AnalysisProfile1 = self.AnalysisProfile
             self.AnalysisProfile2 = self.AnalysisProfile3 = None
-        elif self.Copyprofile == '2':
+        elif self.Copy == '2':
             self.AnalysisProfile1 = self.AnalysisProfile2 = self.AnalysisProfile
             self.AnalysisProfile3 = None
-        elif self.Copyprofile == '3':
+        elif self.Copy == '3':
             self.AnalysisProfile1 = self.AnalysisProfile2 = self.AnalysisProfile3 = self.AnalysisProfile
         else:
             pass
 
     @api.onchange('Copysmaplingdate')
     def copy_sampledate(self):
-        if self.Copysmaplingdate == '1':
+        if self.Copy == '1':
             self.SamplingDate1 = self.SamplingDate
             self.SamplingDate2 = self.SamplingDate3 = None
-        elif self.Copysmaplingdate == '2':
+        elif self.Copy == '2':
             self.SamplingDate1 = self.SamplingDate2 = self.SamplingDate
             self.SamplingDate3 = None
-        elif self.Copysmaplingdate == '3':
+        elif self.Copy == '3':
             self.SamplingDate1 = self.SamplingDate2 = self.SamplingDate3 = self.SamplingDate
         else:
             pass
 
     @api.onchange('Copysampler')
     def copy_sampler(self):
-        if self.Copysampler == '1':
+        if self.Copy == '1':
             self.Sampler1 = self.Sampler
             self.Sampler2 = self.Sampler3 = None
-        elif self.Copysampler == '2':
+        elif self.Copy == '2':
             self.Sampler1 = self.Sampler2 = self.Sampler
             self.Sampler3 = None
-        elif self.Copysampler == '3':
+        elif self.Copy == '3':
             self.Sampler1 = self.Sampler2 = self.Sampler3 = self.Sampler
         else:
             pass
 
     @api.onchange('Copysampletype')
     def copy_sample_type(self):
-        if self.Copysampletype == '1':
+        if self.Copy == '1':
             self.SampleType1 = self.SampleType
             self.SampleType2 = self.SampleType3 = None
-        elif self.Copysampletype == '2':
+        elif self.Copy == '2':
             self.SampleType1 = self.SampleType2 = self.SampleType
             self.SampleType3 = None
-        elif self.Copysampletype == '3':
+        elif self.Copy == '3':
             self.SampleType1 = self.SampleType2 = self.SampleType3 = self.SampleType
         else:
             pass
 
     @api.onchange('Copyspecification')
     def copy_specification(self):
-        if self.Copyspecification == '1':
+        if self.Copy == '1':
             self.Specification1 = self.Specification
             self.Specification2 = self.Specification3 = None
-        elif self.Copyspecification == '2':
+        elif self.Copy == '2':
             self.Specification1 = self.Specification2 = self.Specification
             self.Specification3 = None
-        elif self.Copyspecification == '3':
+        elif self.Copy == '3':
             self.Specification1 = self.Specification2 = self.Specification3 = self.Specification
         else:
             pass
 
     @api.onchange('Copysamplepoint')
     def copy_sample_point(self):
-        if self.Copysamplepoint == '1':
+        if self.Copy == '1':
             self.SamplePoint1 = self.SamplePoint
             self.SamplePoint2 = self.SamplePoint3 = None
-        elif self.Copysamplepoint == '2':
+        elif self.Copy == '2':
             self.SamplePoint1 = self.SamplePoint2 = self.SamplePoint
             self.SamplePoint3 = None
-        elif self.Copysamplepoint == '3':
+        elif self.Copy == '3':
             self.SamplePoint1 = self.SamplePoint2 = self.SamplePoint3 = self.SamplePoint
         else:
             pass
@@ -1782,26 +1707,26 @@ class AnalysisRequest(models.Model, BaseOLiMSModel): #(BaseFolder):
 
     @api.onchange('Copystorage')
     def copy_storage_location(self):
-        if self.Copystorage == '1':
+        if self.Copy == '1':
             self.StorageLocation1 = self.StorageLocation
             self.StorageLocation2 = self.StorageLocation3 = None
-        elif self.Copystorage == '2':
+        elif self.Copy == '2':
             self.StorageLocation1 = self.StorageLocation2 = self.StorageLocation
             self.StorageLocation3 = None
-        elif self.Copystorage == '3':
+        elif self.Copy == '3':
             self.StorageLocation1 = self.StorageLocation2 = self.StorageLocation3 = self.StorageLocation
         else:
             pass
 
     @api.onchange('CopyLotID')
     def copy_client_order_num(self):
-        if self.CopyLotID == '1':
+        if self.Copy == '1':
             self.LotID1 = self.LotID
             self.LotID2 = self.LotID3 = None
-        elif self.CopyLotID == '2':
+        elif self.Copy == '2':
             self.LotID1 = self.LotID2 = self.LotID
             self.LotID3 = None
-        elif self.CopyLotID == '3':
+        elif self.Copy == '3':
             self.LotID1 = self.LotID2 = self.LotID3 = self.LotID
         else:
             pass
@@ -1809,13 +1734,13 @@ class AnalysisRequest(models.Model, BaseOLiMSModel): #(BaseFolder):
 
     @api.onchange('CopyClientReference')
     def copy_client_reference(self):
-        if self.CopyClientReference == '1':
+        if self.Copy == '1':
             self.ClientReference1 = self.ClientReference
             self.ClientReference2 = self.ClientReference3 = None
-        elif self.CopyClientReference == '2':
+        elif self.Copy == '2':
             self.ClientReference1 = self.ClientReference2 = self.ClientReference
             self.ClientReference3 = None
-        elif self.CopyClientReference == '3':
+        elif self.Copy == '3':
             self.ClientReference1 = self.ClientReference2 = self.ClientReference3 = self.ClientReference
         else:
             pass
@@ -1823,52 +1748,52 @@ class AnalysisRequest(models.Model, BaseOLiMSModel): #(BaseFolder):
 
     @api.onchange('CopyClientSampleID')
     def copy_client_sample_id(self):
-        if self.CopyClientSampleID == '1':
+        if self.Copy == '1':
             self.ClientSampleID1 = self.ClientSampleID
             self.ClientSampleID2 = self.ClientSampleID3 = None
-        elif self.CopyClientSampleID == '2':
+        elif self.Copy == '2':
             self.ClientSampleID1 = self.ClientSampleID2 = self.ClientSampleID
             self.ClientSampleID3 = None
-        elif self.CopyClientSampleID == '3':
+        elif self.Copy == '3':
             self.ClientSampleID1 = self.ClientSampleID2 = self.ClientSampleID3 = self.ClientSampleID
         else:
             pass
 
     @api.onchange('CopySamplingDeviation')
     def copy_sampling_deviation(self):
-        if self.CopySamplingDeviation == '1':
+        if self.Copy == '1':
             self.SamplingDeviation1 = self.SamplingDeviation
             self.SamplingDeviation2 = self.SamplingDeviation3 = None
-        elif self.CopySamplingDeviation == '2':
+        elif self.Copy == '2':
             self.SamplingDeviation1 = self.SamplingDeviation2 = self.SamplingDeviation
             self.SamplingDeviation3 = None
-        elif self.CopySamplingDeviation == '3':
+        elif self.Copy == '3':
             self.SamplingDeviation1 = self.SamplingDeviation2 = self.SamplingDeviation3 = self.SamplingDeviation
         else:
             pass
 
     @api.onchange('CopySampleCondition')
     def copy_sample_condition(self):
-        if self.CopySampleCondition == '1':
+        if self.Copy == '1':
             self.SampleCondition1 = self.SampleCondition
             self.SampleCondition2 = self.SampleCondition3 = None
-        elif self.CopySampleCondition == '2':
+        elif self.Copy == '2':
             self.SampleCondition1 = self.SampleCondition2 = self.SampleCondition
             self.SampleCondition3 = None
-        elif self.CopySampleCondition == '3':
+        elif self.Copy == '3':
             self.SampleCondition1 = self.SampleCondition2 = self.SampleCondition3 = self.SampleCondition
         else:
             pass
 
     @api.onchange('CopyDefaultContainerType')
     def copy_container_type(self):
-        if self.CopyDefaultContainerType == '1':
+        if self.Copy == '1':
             self.DefaultContainerType1 = self.DefaultContainerType
             self.DefaultContainerType2 = self.DefaultContainerType3 = None
-        elif self.CopyDefaultContainerType == '2':
+        elif self.Copy == '2':
             self.DefaultContainerType1 = self.DefaultContainerType2 = self.DefaultContainerType
             self.DefaultContainerType3 = None
-        elif self.CopyDefaultContainerType == '3':
+        elif self.Copy == '3':
             self.DefaultContainerType1 = self.DefaultContainerType2 = self.DefaultContainerType3 = self.DefaultContainerType
         else:
             pass
@@ -1876,65 +1801,65 @@ class AnalysisRequest(models.Model, BaseOLiMSModel): #(BaseFolder):
 
     @api.onchange('CopyAdHoc')
     def copy_adhoc(self):
-        if self.CopyAdHoc == '1':
+        if self.Copy == '1':
             self.AdHoc1 = self.AdHoc
             self.AdHoc2 = self.AdHoc3 = False
-        elif self.CopyAdHoc == '2':
+        elif self.Copy == '2':
             self.AdHoc1 = self.AdHoc2 = self.AdHoc
             self.AdHoc3 = False
-        elif self.CopyAdHoc == '3':
+        elif self.Copy == '3':
             self.AdHoc1 = self.AdHoc2 = self.AdHoc3 = self.AdHoc
         else:
             pass
 
     @api.onchange('CopyComposite')
     def copy_composite(self):
-        if self.CopyComposite == '1':
+        if self.Copy == '1':
             self.Composite1 = self.Composite
             self.Composite2 = self.Composite3 = False
-        elif self.CopyComposite == '2':
+        elif self.Copy == '2':
             self.Composite1 = self.Composite2 = self.Composite
             self.Composite3 = False
-        elif self.CopyComposite == '3':
+        elif self.Copy == '3':
             self.Composite1 = self.Composite2 = self.Composite3 = self.Composite
         else:
             pass
 
     @api.onchange('CopyReportDryMatter')
     def copy_report_dry_matter(self):
-        if self.CopyReportDryMatter == '1':
+        if self.Copy == '1':
             self.ReportDryMatter1 = self.ReportDryMatter
             self.ReportDryMatter2 = self.ReportDryMatter3 = False
-        elif self.CopyReportDryMatter == '2':
+        elif self.Copy == '2':
             self.ReportDryMatter1 = self.ReportDryMatter2 = self.ReportDryMatter
             self.ReportDryMatter3 = False
-        elif self.CopyReportDryMatter == '3':
+        elif self.Copy == '3':
             self.ReportDryMatter1 = self.ReportDryMatter2 = self.ReportDryMatter3 = self.ReportDryMatter
         else:
             pass
 
     @api.onchange('CopyInvoiceExclude')
     def copy_invoice_exclude(self):
-        if self.CopyInvoiceExclude == '1':
+        if self.Copy == '1':
             self.InvoiceExclude1 = self.InvoiceExclude
             self.InvoiceExclude2 = self.InvoiceExclude3 = False
-        elif self.CopyInvoiceExclude == '2':
+        elif self.Copy == '2':
             self.InvoiceExclude1 = self.InvoiceExclude2 = self.InvoiceExclude
             self.InvoiceExclude3 = False
-        elif self.CopyInvoiceExclude == '3':
+        elif self.Copy == '3':
             self.InvoiceExclude1 = self.InvoiceExclude2 = self.InvoiceExclude3 = self.InvoiceExclude
         else:
             pass
 
     @api.onchange('CopyPriority')
     def copy_priority(self):
-        if self.CopyPriority == '1':
+        if self.Copy == '1':
             self.Priority1 = self.Priority
             self.Priority2 = self.Priority3 = None
-        elif self.CopyPriority == '2':
+        elif self.Copy == '2':
             self.Priority1 = self.Priority2 = self.Priority
             self.Priority3 = None
-        elif self.CopyPriority == '3':
+        elif self.Copy == '3':
             self.Priority1 = self.Priority2 = self.Priority3 = self.Priority
         else:
             pass

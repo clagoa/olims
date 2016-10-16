@@ -1823,16 +1823,16 @@
                                 <label for="Client" string="Client" invisible="1"/>
                                 <field name="Client" options="{'no_create': True}" invisible="1"></field>
                                 <field name="id" invisible="1"/>
-                            <!-- <group>
-                                <label for="CopyContact" string="Copy" invisible="1"/>
+                            <group>
+                                <label for="Copy" string="Copy" invisible="1"/>
                                 <div style="display: block;text-align: center">
-                                    <field name="CopyContact" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                    <field name="Copy" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
                                 </div>
-                            </group> -->
+                            </group>
                             <group>
                                 <label for="SamplingDate" string="Sampling Date"/>
                                 <div>
-                                    <field name="Copysmaplingdate" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                    <field name="Copysmaplingdate" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                     <field name="SamplingDate" nolabel="1"></field>
                                     <field name="SamplingDate1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                     <field name="SamplingDate2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1842,7 +1842,7 @@
                             <group>
                                 <label for="Contact" string="Contact"/>
                                 <div>
-                                    <field name="CopyContact" style="width:20%%" nolabel='1' attrs="{'invisible': [('id', '!=', False)]}"/>
+                                    <field name="CopyContact" style="width:20%%" nolabel='1' attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                     <field name="Contact" options="{'no_create': True}" nolabel='1' width="25%" domain="['|',('Client_Contact','=',context.get('client_context')),('Client_Contact','=',Client)]"></field>
                                     <field name="Contact1" options="{'no_create': True}" nolabel='1' width="25%" attrs="{'invisible': [('id', '!=', False)]}" domain="['|',('Client_Contact','=',context.get('client_context')),('Client_Contact','=',Client)]"></field>
                                     <field name="Contact2" options="{'no_create': True}" nolabel='1' width="25%" attrs="{'invisible': [('id', '!=', False)]}" domain="['|',('Client_Contact','=',context.get('client_context')),('Client_Contact','=',Client)]"></field>
@@ -1852,7 +1852,7 @@
                         <group>
                             <label for="CCContact" string="CC Contact"/>
                             <div>
-                                <field name="CopyCCContact" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="CopyCCContact" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="CCContact" options="{'no_create': True}" nolabel="1" domain="['|',('Client_Contact','=',context.get('client_context')),('Client_Contact','=',Client)]"></field>
                                 <field name="CCContact1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" domain="['|',('Client_Contact','=',context.get('client_context')),('Client_Contact','=',Client)]"></field>
                                 <field name="CCContact2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" domain="['|',('Client_Contact','=',context.get('client_context')),('Client_Contact','=',Client)]"></field>
@@ -1862,7 +1862,7 @@
                         <group>
                             <label for="CCEmails" string="CCEmails"/>
                             <div>
-                                <field name="CopyEmail" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="CopyEmail" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="CCEmails" nolabel="1" widget="many2many_tags" options="{'no_create': True}" domain="['|',('client_id','=',context.get('client_context')),('client_id','=',Client)]"></field>
                                 <field name="CCEmails1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" widget="many2many_tags" options="{'no_create': True}" domain="['|',('client_id','=',context.get('client_context')),('client_id','=',Client)]"></field>
                                 <field name="CCEmails2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" widget="many2many_tags" options="{'no_create': True}" domain="['|',('client_id','=',context.get('client_context')),('client_id','=',Client)]"></field>
@@ -1872,7 +1872,7 @@
                         <group>
                                 <label for="ClientSampleID" string="Client Sample ID"/>
                                 <div>
-                                    <field name="CopyClientSampleID" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                    <field name="CopyClientSampleID" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                     <field name="ClientSampleID" nolabel="1"></field>
                                     <field name="ClientSampleID1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                     <field name="ClientSampleID2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1882,7 +1882,7 @@
                             <group>
                                 <label for="LotID" string="Lot ID"/>
                                 <div>
-                                    <field name="CopyLotID" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                    <field name="CopyLotID" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                     <field name="LotID" nolabel="1"></field>
                                     <field name="LotID1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                     <field name="LotID2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1892,7 +1892,7 @@
                             <group>
                                 <label for="SampleType" string="Sample Type"/>
                                 <div>
-                                    <field name="Copysampletype" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                    <field name="Copysampletype" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                     <field name="SampleType" options="{'no_create': True}" nolabel="1"></field>
                                     <field name="SampleType1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                     <field name="SampleType2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1902,7 +1902,7 @@
                         <group>
                             <label for="Sample_id" string="Sample"/>
                             <div>
-                                <field name="Copysample" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copysample" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="Sample_id" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="Sample_id1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="Sample_id2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1912,7 +1912,7 @@
                         <group>
                             <label for="AnalysisProfile" string="Analysis Profile" attrs="{'invisible': [('id', '!=', False)]}"/>
                             <div>
-                                <field name="Copyprofile" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copyprofile" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="AnalysisProfile" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="AnalysisProfile1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="AnalysisProfile2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1922,7 +1922,7 @@
                         <group>
                             <label for="Sampler" string="Transporter"/>
                             <div>
-                                <field name="Copysampler" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copysampler" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="Sampler" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="Sampler1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="Sampler2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1932,7 +1932,7 @@
                         <group>
                             <label for="Batch" string="Batch"/>
                             <div>
-                                <field name="Copybatch" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copybatch" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="Batch" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="Batch1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="Batch2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1942,7 +1942,7 @@
                         <group>
                             <label for="SubGroup" string="Sub Group"/>
                             <div>
-                                <field name="Copysubgroup" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copysubgroup" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="SubGroup" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="SubGroup1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="SubGroup2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1952,7 +1952,7 @@
                         <group>
                             <label for="Template" string="Template"/>
                             <div>
-                                <field name="Copytemplate" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copytemplate" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="Template" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="Template1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="Template2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1962,7 +1962,7 @@
                         <group>
                             <label for="Specification" string="Analysis Specification"/>
                             <div>
-                                <field name="Copyspecification" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copyspecification" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="Specification" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="Specification1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="Specification2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1972,7 +1972,7 @@
                         <group>
                             <label for="SamplePoint" string="Sample Point"/>
                             <div>
-                                <field name="Copysamplepoint" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copysamplepoint" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="SamplePoint" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="SamplePoint1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="SamplePoint2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1982,7 +1982,7 @@
                         <group>
                             <label for="StorageLocation" string="StorageLocation"/>
                             <div>
-                                <field name="Copystorage" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="Copystorage" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="StorageLocation" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="StorageLocation1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="StorageLocation2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -1992,7 +1992,7 @@
                         <group>
                             <label for="ClientReference" string="Client Reference"/>
                             <div>
-                                <field name="CopyClientReference" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="CopyClientReference" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="ClientReference" nolabel="1"></field>
                                 <field name="ClientReference1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="ClientReference2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2002,7 +2002,7 @@
                         <group>
                             <label for="SamplingDeviation" string="SamplingDeviation"/>
                             <div>
-                                <field name="CopySamplingDeviation" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="CopySamplingDeviation" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="SamplingDeviation" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="SamplingDeviation1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="SamplingDeviation2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2012,7 +2012,7 @@
                         <group>
                             <label for="SampleCondition" string="Sample Condition"/>
                             <div>
-                                <field name="CopySampleCondition" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="CopySampleCondition" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="SampleCondition" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="SampleCondition1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="SampleCondition2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2022,7 +2022,7 @@
                         <group>
                             <label for="DefaultContainerType" string="Default Container Type"/>
                             <div>
-                                <field name="CopyDefaultContainerType" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="CopyDefaultContainerType" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="DefaultContainerType" options="{'no_create': True}" nolabel="1"></field>
                                 <field name="DefaultContainerType1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="DefaultContainerType2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2032,7 +2032,7 @@
                         <group>
                             <label for="AdHoc" string="Ad Hoc"/>
                             <div>
-                                <field name="CopyAdHoc" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                                <field name="CopyAdHoc" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                                 <field name="AdHoc" nolabel="1"></field>
                                 <field name="AdHoc1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                                 <field name="AdHoc2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2043,7 +2043,7 @@
                     <group>
                         <label for="Composite" string="Composite"/>
                         <div>
-                            <field name="CopyComposite" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                            <field name="CopyComposite" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                             <field name="Composite" nolabel="1"></field>
                             <field name="Composite1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                             <field name="Composite2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2054,7 +2054,7 @@
                     <group>
                         <label for="ReportDryMatter" string="Report Dry Matter"/>
                         <div>
-                            <field name="CopyReportDryMatter" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                            <field name="CopyReportDryMatter" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                             <field name="ReportDryMatter" nolabel="1"></field>
                             <field name="ReportDryMatter1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                             <field name="ReportDryMatter2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2065,7 +2065,7 @@
                      <group>
                         <label for="InvoiceExclude" string="Invoice Exclude"/>
                         <div>
-                            <field name="CopyInvoiceExclude" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                            <field name="CopyInvoiceExclude" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                             <field name="InvoiceExclude" nolabel="1"></field>
                             <field name="InvoiceExclude1" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                             <field name="InvoiceExclude2" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2076,7 +2076,7 @@
                     <group>
                         <label for="Priority" string="Priority"/>
                         <div>
-                            <field name="CopyPriority" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"/>
+                            <field name="CopyPriority" style="width:20%%" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}" class="fa fa-forward"/>
                             <field name="Priority" options="{'no_create': True}" nolabel="1"></field>
                             <field name="Priority1" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
                             <field name="Priority2" options="{'no_create': True}" nolabel="1" attrs="{'invisible': [('id', '!=', False)]}"></field>
@@ -2195,7 +2195,7 @@
                     </field>
                     <label for="Analyses" string="Analyses"/>
                     <field name="Analyses" widget="one2many_list" attrs="{'readonly': [('state', 'in', ['verified', 'published', 'cancelled']),]}">
-                        <tree editable="bottom">
+                        <tree editable="bottom" delete="false">
                             <field name="id" invisible="1"/>
                             <field name="Category" options="{'no_create': True}" attrs="{'readonly': [('id', '!=', False)]}"/>
                             <field name="Services" options="{'no_create': True}" attrs="{'readonly': [('id', '!=', False)]}"/>
@@ -2206,6 +2206,7 @@
                             <field name="Min"/>
                             <field name="Max"/>
                             <field name="Error"/>
+                            <button type="object" class="oe_readonly" icon="fa-trash-o" name="show_delete_warring_message_form"></button>
                         </tree>
                     </field>
                     <label for="Remarks" string="Remarks"/>
@@ -2323,8 +2324,8 @@
                     <field name="SubGroup"></field>
                     <field name="Client"></field>
                     <field name="create_uid"></field>
-                    <!-- <field name="Template"></field>
-                    <field name="AnalysisProfile"></field> -->
+                    <!-- <field name="Template"></field> -->
+                    <field name="AnalysisProfile" string="Analysis Profile"></field>
                     <field name="SamplingDate" string="Sampling Date"></field>
                     <field name="SampleType" string="Sample Type"></field>
                     <!-- <field name="Specification"></field>
@@ -2350,6 +2351,15 @@
                 </tree>
             </field>
         </record>
+        <record id="view_analysis_request_filter" model="ir.ui.view">
+            <field name="name">olims.analysis_request.list.select</field>
+            <field name="model">olims.analysis_request</field>
+            <field name="arch" type="xml">
+                <search string="Search Prof">
+                    <field name="AnalysisProfile"/>
+               </search>
+            </field>
+        </record>
 
 		<record model="ir.actions.act_window" id="analysis_request_list_action">
             <field name="name">Analysis Request</field>
@@ -2357,6 +2367,7 @@
             <field name="view_type">form</field>
 			<field name="view_mode">tree,form</field>
             <field name="view_id" ref="olims_analysis_request_tree_view"/>
+            <field name="search_view_id" ref="view_analysis_request_filter"/>
        </record>
        <record model="ir.actions.act_window" id="analysis_request_form_action">
             <field name="name">Analysis Request</field>
@@ -5867,11 +5878,16 @@
             <field name="model">olims.add_analysis</field>
             <field name="arch" type="xml">
                 <search string="Search Analyses">
-                    <!-- <field name="name" string="Sales Order" filter_domain="['|',('name','ilike',self),('client_order_ref','ilike',self)]"/> -->
                     <field name="category"/>
                     <field name="client"/>
                     <field name="analysis"/>
                     <field name="sample_type"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Category" name="group_cat_id"
+                            context="{'group_by': 'category'}"/>
+                            <filter string="Analysis Request" name="group_ar_id"
+                            context="{'group_by': 'add_analysis_id'}"/>
+                    </group>
                </search>
             </field>
         </record>
@@ -5881,7 +5897,7 @@
             <field name="res_model">olims.add_analysis</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_add_analysis_filter"/>   
+            <field name="search_view_id" ref="view_add_analysis_filter"/>
         </record>
         <record model="ir.ui.view" id="olims_email_tree_view">
             <field name="name">email.tree</field>
@@ -5902,7 +5918,7 @@
                </form>
             </field>
         </record>
-        <record id="action_add_analysis" model="ir.actions.act_window">
+        <record id="action_add_email" model="ir.actions.act_window">
             <field name="name">Email</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">olims.email</field>

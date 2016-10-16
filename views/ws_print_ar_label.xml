@@ -1,0 +1,28 @@
+<openerp>
+ 	<data>
+ 		<template id="report_ws_ar_label_document">
+ 			<t t-call="report.html_container">
+	            <div class="page">
+	                <t t-foreach="docs" t-as="doc">
+	                    <div class="row">
+	                        <table class="table table-condensed">
+	                        	<tbody>
+	                        		<t t-set="ar_id" t-value="False"/>
+	                        		<tr t-foreach="doc.ManageResult" t-as="result">
+                        				<t t-if="ar_id != result.request_analysis_id.RequestID" >
+                        					<td>
+                        						<img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s&amp;humanreadable=%s' %('Standard39', result.request_analysis_id.RequestID, 250, 50, 1)"/>
+                        					</td>
+                        				</t>
+                        				<t t-set="ar_id" t-value="result.request_analysis_id.RequestID"/>
+	                        		</tr>
+	                        		<tr></tr>
+	                        	</tbody>
+	                        </table>
+	                    </div>
+	                </t>
+	            </div>
+	        </t>
+	    </template>
+ 	</data>
+</openerp>

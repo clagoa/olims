@@ -25,7 +25,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
             <field name="target">new</field>
-            <!-- <field name="groups_id" eval="[(6,0, [ref('group_lab_managers')])]"/> -->
+            <field name="view_id" ref="view_message_dialog_box"/>
         </record>
 
         <record model="ir.values" id="olims_analysis_request_cancel">
@@ -49,6 +49,24 @@
                     <field name="title" invisible="1"/>
                     <footer>
                         <button name="unlink" string="Ok" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_delete_message_dialog_box" model="ir.ui.view">
+            <field name="name">Delete</field>
+            <field name="model">olims.message_dialog_box</field>
+            <field name="priority" eval="3"/>
+            <field name="arch" type="xml">
+                <form string="Delete Analyses">
+                    <p class="o_dialog_warning">
+                        Do you really want to remove these records?
+                    </p>
+                    <field name="title" invisible="1"/>
+                    <footer>
+                        <button name="unlink_analyses_of_ar" string="Ok" type="object" class="btn-primary"/>
                         <button string="Cancel" class="btn-default" special="cancel"/>
                     </footer>
                 </form>

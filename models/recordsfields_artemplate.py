@@ -1,5 +1,6 @@
 from openerp import fields, models, api
 from base_olims_model import BaseOLiMSModel
+from openerp.tools.translate import _
 
 schema = (fields.Many2one(string='Services',
                    comodel_name='olims.analysis_service',
@@ -39,6 +40,22 @@ class RecodrdsFieldARTemplate(models.Model, BaseOLiMSModel):
 class ARAnalysis(models.Model, BaseOLiMSModel):
     _inherit = 'olims.records_field_artemplates'
     _name = 'olims.ar_analysis'
+
+    @api.multi
+    def show_delete_warring_message_form(self):
+        self.ensure_one()
+        ir_model_data = self.env['ir.model.data']
+        form_id = ir_model_data.get_object_reference('olims', 'view_delete_message_dialog_box')[1]
+        return {
+            'name': _('Confirm'),
+            'type': 'ir.actions.act_window',
+            'view_type': 'form',
+            'view_mode': 'form',
+            'res_model': 'olims.message_dialog_box',
+            'views': [(form_id, 'form')],
+            'view_id': form_id,
+            'target': 'new',
+        }
     
 RecodrdsFieldARTemplate.initialze(schema)
 ARAnalysis.initialze(analysis_schema)
